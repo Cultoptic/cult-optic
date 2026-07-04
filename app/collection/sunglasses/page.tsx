@@ -43,17 +43,19 @@ export default function SunglassesPage() {
       <section
         style={{
           position: "relative",
-          height: "clamp(340px, 30vw, 420px)",
+          width: "100%",
+          height: "420px",
           overflow: "hidden",
+          background: "#F4F1EC",
         }}
       >
         <Image
-          src="/editorial/MODEL - CLASSY.png"
+          src="/editorial/MODEL - CLASSY - 3.png"
           alt="CULT OPTIC Sunglasses Collection"
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center 40%" }}
+          style={{ objectFit: "cover", objectPosition: "center center" }}
         />
 
         <div
@@ -64,42 +66,6 @@ export default function SunglassesPage() {
             pointerEvents: "none",
           }}
         />
-
-        <div
-          style={{
-            position: "absolute",
-            bottom: "clamp(24px, 4vw, 48px)",
-            left: "clamp(24px, 5vw, 80px)",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: '"TT Norms Pro", sans-serif',
-              fontSize: "18px",
-              fontWeight: 700,
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              lineHeight: 1,
-              color: "rgba(245,245,240,0.95)",
-              marginBottom: "10px",
-            }}
-          >
-            Sunglasses Collection
-          </p>
-          <p
-            style={{
-              fontFamily: '"TT Norms Pro", sans-serif',
-              fontSize: "12px",
-              fontWeight: 400,
-              letterSpacing: "0.03em",
-              color: "rgba(245,245,240,0.60)",
-              lineHeight: 1.65,
-              maxWidth: "340px",
-            }}
-          >
-            Una colección diseñada para quienes encuentran identidad en cada detalle.
-          </p>
-        </div>
       </section>
 
       {/* ── PRODUCT GRID ──────────────────────────────────────────── */}
