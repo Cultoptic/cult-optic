@@ -12,11 +12,25 @@ const cardImages: Record<string, string> = {
   brat:      "/collection/brat/card-brat.png",
   ventis:    "/collection/ventis/card-ventis.png",
   core:      "/collection/core/card-core.png",
-  boogie:    "/collection/boogie/card-boogie.png",
+  boogie:    "/collection/boogie/card.boogie.png",
   classy:    "/collection/classy/card-classy.png",
   solace:    "/collection/solace/card-solace.png",
   vector:    "/collection/vector/card-vector.png",
   breakline: "/collection/breakline/card-breakline.png",
+};
+
+// Per-product scale correction so every silhouette reads as the same visual
+// weight inside the shared image container (contain-fit leaves each PNG at a
+// different apparent size depending on frame bulk).
+const cardScale: Record<string, number> = {
+  brat: 1,
+  ventis: 1,
+  core: 1,
+  boogie: 1,
+  classy: 1,
+  solace: 1.18,
+  vector: 0.85,
+  breakline: 0.92,
 };
 
 export default function SunglassesPage() {
@@ -109,9 +123,10 @@ export default function SunglassesPage() {
               <div
                 style={{
                   width: "100%",
-                  aspectRatio: "3 / 4",
-                  overflow: "hidden",
-                  marginBottom: "clamp(10px, 1.2vw, 14px)",
+                  height: "clamp(220px, 24vw, 320px)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   background: "#F4F1EC",
                 }}
               >
@@ -121,17 +136,20 @@ export default function SunglassesPage() {
                   alt={product.name}
                   className="sunglasses-img"
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    maxWidth: "90%",
+                    maxHeight: "90%",
+                    width: "auto",
+                    height: "auto",
                     objectFit: "contain",
-                    padding: "6%",
                     display: "block",
+                    transform: `scale(${cardScale[product.id] ?? 1})`,
                     transition: "transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                   }}
                 />
               </div>
 
               <p
+                className="sunglasses-name"
                 style={{
                   fontFamily: '"TT Norms Pro", sans-serif',
                   fontSize: "13px",
@@ -139,6 +157,7 @@ export default function SunglassesPage() {
                   letterSpacing: "0.10em",
                   textTransform: "uppercase",
                   color: "#211B16",
+                  marginTop: "-28px",
                   marginBottom: "5px",
                   lineHeight: 1.2,
                 }}

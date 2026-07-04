@@ -185,8 +185,14 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.sunglasses-card:hover .sunglasses-img {
-  transform: scale(1.04);
+.sunglasses-card {
+  transition: transform 250ms ease;
+}
+.sunglasses-card:hover {
+  transform: translateY(-5px);
+}
+.sunglasses-card:hover .sunglasses-name {
+  font-weight: 800;
 }
 
 /* ── Collection carousel ────────────────────────────────────── */
