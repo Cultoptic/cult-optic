@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+/* ── TT Norms Pro — full family ────────────────────────────── */
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Thin Italic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro ExtraLight Italic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro ExtraBold Italic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro Black Italic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro ExtraBlack.otf') format('opentype');
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Norms Pro";
+  src: url('/fonts/TT Norms Pro ExtraBlack Italic.otf') format('opentype');
+  font-weight: 950;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --void: #0A0A0A;
+  --graphite: #1C1C1E;
+  --graphite-mid: #2A2A2D;
+  --smoke: #8A8A8A;
+  --snow: #F5F5F0;
+  --deep-blue: #1A2744;
+  --sand: #C4B49A;
+  --sand-light: #E8DDD0;
+  --sand-dark: #A89478;
+  --font-primary: "TT Norms Pro", system-ui, sans-serif;
+  --font-space: var(--font-primary);
+  --font-inter: var(--font-primary);
+  --font-norms: var(--font-primary);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--void);
+  color: var(--snow);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: rgba(196,180,154,0.25); }
+
+/* ── Sunglasses Collection page ─────────────────────────────── */
+.sunglasses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(28px, 3.5vw, 48px) clamp(20px, 2.5vw, 40px);
+}
+@media (max-width: 1023px) {
+  .sunglasses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 639px) {
+  .sunglasses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.sunglasses-card:hover .sunglasses-img {
+  transform: scale(1.04);
+}
+
+/* ── Collection carousel ────────────────────────────────────── */
+.collection-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.collection-track::-webkit-scrollbar {
+  display: none;
+}
+.collection-card {
+  flex: 0 0 calc(25% - 18px);
+  background: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+@media (max-width: 1023px) {
+  .collection-card {
+    flex: 0 0 calc(50% - 12px);
+  }
+}
+@media (max-width: 767px) {
+  .collection-card {
+    flex: 0 0 calc(88% - 10px);
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scrollDrop {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(250%); opacity: 0; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.animate-fade-up-delay {
+  animation: fadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+  opacity: 0;
+}
+.animate-fade-in { animation: fadeIn 1.4s ease forwards; }
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-scroll-drop { animation: scrollDrop 2.5s ease-in-out infinite; }
+
+.hover-line { position: relative; }
+.hover-line::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--sand);
+  transition: width 0.4s ease;
+}
+.hover-line:hover::after { width: 100%; }
+
+.snow-explore-btn:hover { border-color: rgba(33,27,22,0.75); }
+
+.grain::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* Editorial category grid */
+.editorial-grid {
+  display: grid;
+  gap: 3px;
+}
+
+.editorial-grid > * {
+  min-height: 380px;
+}
+
+@media (min-width: 768px) {
+  .editorial-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 500px 300px;
+    gap: 4px;
+  }
+  .editorial-grid > * {
+    min-height: unset;
+  }
+  .editorial-grid > :nth-child(1) { grid-row: span 2; }
+  .editorial-grid > :nth-child(4) { grid-column: span 2; }
+}
+
+/* Hero block — responsive vertical position via CSS variables */
+:root {
+  --hero-content-bottom: 200px;
+  --hero-dots-bottom: 161px;
+}
+@media (min-width: 768px) {
+  :root {
+    --hero-content-bottom: 100px;
+    --hero-dots-bottom: 60px;
+  }
+}
