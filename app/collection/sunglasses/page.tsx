@@ -43,13 +43,12 @@ export default function SunglassesPage() {
       <section
         style={{
           position: "relative",
-          height: "40vh",
-          minHeight: "240px",
+          height: "clamp(340px, 30vw, 420px)",
           overflow: "hidden",
         }}
       >
         <Image
-          src="/editorial/lifestyle-1.png"
+          src="/editorial/MODEL - CLASSY.png"
           alt="CULT OPTIC Sunglasses Collection"
           fill
           priority
@@ -61,7 +60,7 @@ export default function SunglassesPage() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to top, rgba(33,27,22,0.52) 0%, transparent 55%)",
+            background: "rgba(20,16,12,0.18)",
             pointerEvents: "none",
           }}
         />
