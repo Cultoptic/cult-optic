@@ -20,9 +20,8 @@ export default function MobileHeader({
 
   return (
     <div
-      className="md:hidden fixed top-0 left-0 right-0 z-50"
+      className="flex md:hidden fixed top-0 left-0 right-0 z-50"
       style={{
-        display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         height: "68px",
