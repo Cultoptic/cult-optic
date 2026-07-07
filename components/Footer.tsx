@@ -9,8 +9,8 @@ export default function Footer() {
         borderTop: "1px solid rgba(138,138,138,0.15)",
       }}
     >
-      <div className="max-w-screen-xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="max-w-screen-xl mx-auto px-6 footer-inner">
+        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-16 tablet:gap-8 desktop:gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <p
@@ -44,7 +44,7 @@ export default function Footer() {
           {/* Collections */}
           <div>
             <p
-              className="text-xs tracking-[0.2em] mb-6 font-medium"
+              className="text-xs tracking-[0.2em] mb-6 font-medium footer-group-heading"
               style={{ color: "var(--sand)", fontFamily: "var(--font-space), sans-serif" }}
             >
               COLLECTIONS
@@ -59,7 +59,7 @@ export default function Footer() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="block text-xs mb-3 hover-line transition-colors duration-300"
+                className="block text-xs mb-3 hover-line transition-colors duration-300 footer-link"
                 style={{ color: "var(--smoke)", fontFamily: "var(--font-space), sans-serif" }}
               >
                 {l.label}
@@ -70,7 +70,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <p
-              className="text-xs tracking-[0.2em] mb-6 font-medium"
+              className="text-xs tracking-[0.2em] mb-6 font-medium footer-group-heading"
               style={{ color: "var(--sand)", fontFamily: "var(--font-space), sans-serif" }}
             >
               COMPANY
@@ -83,7 +83,7 @@ export default function Footer() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="block text-xs mb-3 hover-line transition-colors duration-300"
+                className="block text-xs mb-3 hover-line transition-colors duration-300 footer-link"
                 style={{ color: "var(--smoke)", fontFamily: "var(--font-space), sans-serif" }}
               >
                 {l.label}
@@ -105,7 +105,7 @@ export default function Footer() {
             >
               New collections, athlete stories, and early access.
             </p>
-            <div className="flex gap-0">
+            <div className="flex gap-0 footer-newsletter-row">
               <input
                 type="email"
                 placeholder="your@email.com"
@@ -130,7 +130,7 @@ export default function Footer() {
         </div>
 
         <div
-          className="mt-16 pt-8 flex flex-col md:flex-row justify-between items-start gap-4"
+          className="flex flex-col md:flex-row justify-between items-start gap-4 footer-bottom-bar"
           style={{ borderTop: "1px solid rgba(138,138,138,0.12)" }}
         >
           <p

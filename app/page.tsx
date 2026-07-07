@@ -14,19 +14,9 @@ export default function Home() {
 
       {/* ── EDITORIAL SPREAD ────────────────────────────────────── */}
       <section style={{ background: "#F4F1EC" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "44% 56%",
-          padding: "clamp(80px, 9vw, 130px) clamp(80px, 8vw, 200px)",
-          gap: "clamp(24px, 3vw, 48px)",
-          minHeight: "clamp(500px, 55vw, 680px)",
-        }}>
+        <div className="cult-editorial">
           {/* Columna izquierda — fotografía como objeto independiente */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
+          <div className="cult-editorial-image-col">
             <div style={{ position: "relative", width: "clamp(224px, 20vw, 336px)", aspectRatio: "4/5" }}>
               <Image
                 src="/editorial/2.png"
@@ -39,58 +29,64 @@ export default function Home() {
           </div>
 
           {/* Columna derecha — bloque editorial independiente */}
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            gap: "24px",
-          }}>
+          <div className="cult-editorial-text-col">
             {/* Logo */}
             <Image
               src="/brand/logosinfondo.png"
               alt="CULT OPTIC"
               width={3608}
               height={902}
-              style={{ height: "44px", width: "auto" }}
+              className="cult-editorial-logo"
             />
 
-            {/* Slogan (nowrap) define el ancho — párrafos se estiran para igualarlo */}
-            <div style={{
-              display: "inline-flex",
-              flexDirection: "column",
-              alignItems: "stretch",
-              gap: "16px",
-              maxWidth: "100%",
-            }}>
-              <p style={{
+            {/* Slogan (nowrap en desktop) define el ancho — párrafos se estiran para igualarlo */}
+            <div className="cult-editorial-slogan-wrap">
+              <p className="cult-editorial-slogan" style={{
                 fontFamily: "var(--font-primary)",
                 fontWeight: 700,
-                fontSize: "25px",
                 letterSpacing: "0.18em",
                 color: "#1C1814",
-                lineHeight: 1.5,
                 textAlign: "center",
-                whiteSpace: "nowrap",
               }}>
                 COOL IS COMMON · CULT IS ICONIC
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <div className="cult-editorial-body-group">
                 {[
                   "CULT nace del pulso del viento, el mar y la montaña, transformando esa energía en una selección de anteojos elegida con el alma de quien busca una pieza única. No nos conformamos con lo convencional; presentamos productos con carácter propio que resuenan con la identidad de cada persona, elevando lo común hacia lo icónico.",
                   "Nuestros anteojos son el filtro a través del cual habitas el mundo; una visión con corazón para quienes valoran la autenticidad y buscan recorrer el camino con la profundidad que merece.",
                 ].map((text, i) => (
-                  <p key={i} style={{
-                    fontFamily: "var(--font-primary)",
-                    fontWeight: 400,
-                    fontSize: "13px",
-                    color: "#3D3730",
-                    lineHeight: 1.95,
-                    letterSpacing: "0.04em",
-                    textTransform: "uppercase",
-                    textAlign: "center",
-                  }}>
+                  <p
+                    key={i}
+                    className={i === 0 ? "cult-editorial-body-primary" : "cult-editorial-body-secondary"}
+                    style={{
+                      fontFamily: "var(--font-primary)",
+                      fontWeight: 400,
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase",
+                      textAlign: "center",
+                    }}
+                  >
+                    {text}
+                  </p>
+                ))}
+              </div>
+
+              {/* Versión corta — solo mobile (reemplaza los párrafos largos de arriba) */}
+              <div className="cult-editorial-body-group-mobile">
+                {[
+                  "CULT nace del pulso del viento, el mar y la montaña: una selección de anteojos con carácter propio.",
+                  "Nuestros anteojos son el filtro con el que habitas el mundo.",
+                ].map((text, i) => (
+                  <p
+                    key={i}
+                    style={{
+                      fontFamily: "var(--font-primary)",
+                      fontWeight: 400,
+                      letterSpacing: "0.03em",
+                      textTransform: "uppercase",
+                      textAlign: "center",
+                    }}
+                  >
                     {text}
                   </p>
                 ))}
@@ -107,7 +103,7 @@ export default function Home() {
       <SnowCollection />
 
       {/* ── SECONDARY EDITORIAL GRID ────────────────────────────── */}
-      <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 0 }}>
+      <div className="home-secondary-grid">
         {[
           {
             src: "/editorial/performance-1.png",
@@ -172,24 +168,20 @@ export default function Home() {
 
       {/* ── MARCA GIGANTE — estilo OMR ──────────────────────────── */}
       <section
-        className="overflow-hidden"
+        className="overflow-hidden home-wordmark-section"
         style={{
           background: "var(--void)",
           borderTop: "1px solid rgba(138,138,138,0.08)",
-          paddingTop: "clamp(48px, 6vw, 96px)",
-          paddingBottom: "clamp(48px, 6vw, 96px)",
         }}
       >
         <p
+          className="home-wordmark"
           style={{
             fontFamily: "var(--font-space), sans-serif",
             fontWeight: 700,
             color: "var(--snow)",
-            fontSize: "clamp(80px, 17vw, 260px)",
             letterSpacing: "-0.04em",
-            lineHeight: 0.85,
             paddingLeft: "clamp(24px, 4vw, 48px)",
-            whiteSpace: "nowrap",
           }}
         >
           CULT OPTIC
@@ -198,7 +190,7 @@ export default function Home() {
 
       {/* ── NEWSLETTER ──────────────────────────────────────────── */}
       <section
-        className="py-20 px-6 md:px-12"
+        className="py-16 md:py-20 px-6 md:px-12"
         style={{
           background: "var(--graphite)",
           borderTop: "1px solid rgba(138,138,138,0.08)",
@@ -229,14 +221,13 @@ export default function Home() {
               New collections,<br />early access.
             </p>
           </div>
-          <div className="flex w-full md:w-auto" style={{ minWidth: "min(340px, 100%)" }}>
+          <div className="flex flex-col md:flex-row w-full md:w-auto newsletter-row" style={{ minWidth: "min(340px, 100%)" }}>
             <input
               type="email"
               placeholder="your@email.com"
-              className="flex-1 bg-transparent outline-none"
+              className="flex-1 bg-transparent outline-none newsletter-input"
               style={{
                 border: "1px solid rgba(138,138,138,0.22)",
-                borderRight: "none",
                 padding: "13px 18px",
                 color: "var(--snow)",
                 fontFamily: "var(--font-space), sans-serif",

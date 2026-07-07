@@ -1,5 +1,190 @@
 @import "tailwindcss";
 
+/* ── Responsive system: named breakpoints (additive, does not
+   touch Tailwind's default sm/md/lg/xl) ──────────────────────
+   tablet:  min-width 768px
+   desktop: min-width 1280px
+   Combine as `tablet:X desktop:Y` for a true 768-1279 tablet band. */
+@theme {
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1280px;
+}
+
+/* Generic container horizontal padding (CONTENEDORES spec).
+   Undefined at >=1280px on purpose: each section falls back to its
+   own existing clamp() value there, so desktop never changes. */
+@media (max-width: 767px) {
+  :root { --section-px: 20px; }
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+  :root { --section-px: 40px; }
+}
+
+/* ── Home — Hero video ─────────────────────────────────────────
+   Mobile gets a reduced height so the next section visibly peeks
+   in below it, instead of a full 100vh wall. */
+.hero-slider { height: 100vh; }
+@media (max-width: 767px) {
+  .hero-slider { height: 78svh; }
+}
+.hero-slider-overlay { height: 220px; }
+@media (max-width: 767px) {
+  .hero-slider-overlay { height: 170px; }
+}
+
+/* ── Home — CULT editorial spread (two-column) ────────────────
+   Desktop rules below are byte-identical to the previous inline
+   style, so >=1280px renders pixel-for-pixel the same. */
+.cult-editorial {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  padding: clamp(80px, 9vw, 130px) clamp(80px, 8vw, 200px);
+  gap: clamp(24px, 3vw, 48px);
+  min-height: clamp(500px, 55vw, 680px);
+}
+@media (max-width: 1279px) {
+  .cult-editorial {
+    grid-template-columns: 1fr;
+    padding: clamp(56px, 8vw, 80px) var(--section-px, clamp(24px, 6vw, 80px));
+    min-height: 0;
+  }
+}
+@media (max-width: 767px) {
+  .cult-editorial { gap: 0; }
+}
+
+.cult-editorial-image-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .cult-editorial-image-col { order: 3; margin-bottom: 32px; }
+}
+
+.cult-editorial-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+}
+@media (max-width: 767px) {
+  .cult-editorial-text-col { display: contents; }
+}
+
+.cult-editorial-logo { height: 44px; width: auto; }
+@media (max-width: 767px) {
+  .cult-editorial-logo { order: 1; margin-bottom: 20px; }
+}
+
+.cult-editorial-slogan-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  max-width: 100%;
+}
+@media (max-width: 767px) {
+  .cult-editorial-slogan-wrap { display: contents; }
+}
+
+.cult-editorial-slogan {
+  font-size: 25px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+@media (max-width: 1279px) {
+  .cult-editorial-slogan { font-size: 20px; white-space: normal; }
+}
+@media (max-width: 767px) {
+  .cult-editorial-slogan { font-size: 16px; order: 2; margin-bottom: 32px; max-width: 320px; margin-left: auto; margin-right: auto; }
+}
+
+.cult-editorial-body-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+@media (max-width: 767px) {
+  .cult-editorial-body-group { display: none; }
+}
+
+.cult-editorial-body-primary,
+.cult-editorial-body-secondary {
+  font-size: 13px;
+  color: #3D3730;
+  line-height: 1.95;
+}
+
+/* Mobile-only short copy — replaces .cult-editorial-body-group, which is
+   hidden above. Desktop/tablet never render this block (display:none
+   there), so the long copy above is what they always show, unchanged. */
+.cult-editorial-body-group-mobile { display: none; }
+@media (max-width: 767px) {
+  .cult-editorial-body-group-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    order: 4;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cult-editorial-body-group-mobile p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #3D3730;
+  }
+}
+
+/* ── Home — secondary 4-image editorial grid ───────────────────
+   Mobile stacks full-bleed single column (not a 2x2 thumbnail
+   grid) — each tile reads as its own editorial moment. */
+.home-secondary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+@media (max-width: 1279px) {
+  .home-secondary-grid { gap: 12px; }
+}
+@media (max-width: 767px) {
+  .home-secondary-grid { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (min-width: 1280px) {
+  .home-secondary-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Home — CULT OPTIC wordmark section padding ─────────────────
+   Base rule matches the previous inline value exactly (desktop
+   and tablet unchanged), mobile gets extra breathing room. */
+.home-wordmark-section {
+  padding-top: clamp(48px, 6vw, 96px);
+  padding-bottom: clamp(48px, 6vw, 96px);
+}
+@media (max-width: 767px) {
+  .home-wordmark-section { padding-top: 56px; padding-bottom: 56px; }
+}
+
+/* ── Home — CULT OPTIC giant wordmark ─────────────────────────
+   Base rule matches the previous inline fontSize/whiteSpace/
+   lineHeight exactly, so desktop (>=1280px) is unchanged. */
+.home-wordmark {
+  font-size: clamp(80px, 17vw, 260px);
+  line-height: 0.85;
+  white-space: nowrap;
+  padding-right: 0;
+}
+@media (max-width: 1279px) {
+  .home-wordmark { font-size: clamp(64px, 14vw, 140px); }
+}
+@media (max-width: 767px) {
+  .home-wordmark {
+    font-size: clamp(48px, 16vw, 72px);
+    white-space: normal;
+    line-height: 0.95;
+    padding-right: clamp(24px, 4vw, 48px);
+  }
+}
+
 /* ── TT Norms Pro — full family ────────────────────────────── */
 @font-face {
   font-family: "TT Norms Pro";
@@ -169,21 +354,60 @@ body {
 ::-webkit-scrollbar-track { background: var(--void); }
 ::-webkit-scrollbar-thumb { background: rgba(196,180,154,0.25); }
 
+/* ── Collection page hero banner (currently: sunglasses only —
+   snow's own hero uses vh-based sizing and is intentionally left
+   untouched, see plan notes) ──────────────────────────────────── */
+.collection-hero-banner {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+@media (max-width: 1279px) {
+  .collection-hero-banner { height: 360px; }
+}
+@media (max-width: 767px) {
+  .collection-hero-banner { height: 320px; }
+}
+
 /* ── Sunglasses Collection page ─────────────────────────────── */
 .sunglasses-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(28px, 3.5vw, 48px) clamp(20px, 2.5vw, 40px);
 }
-@media (max-width: 1023px) {
+@media (max-width: 1279px) {
   .sunglasses-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 32px) clamp(16px, 2vw, 28px);
   }
 }
-@media (max-width: 639px) {
+@media (max-width: 767px) {
   .sunglasses-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2px, 1vw, 6px) clamp(10px, 3vw, 16px);
   }
+}
+.sunglasses-card-image-box {
+  width: 100%;
+  height: clamp(220px, 24vw, 320px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F4F1EC;
+}
+@media (max-width: 1279px) {
+  .sunglasses-card-image-box { height: clamp(200px, 26vw, 260px); }
+}
+@media (max-width: 767px) {
+  .sunglasses-card-image-box {
+    height: clamp(190px, 46vw, 240px);
+    align-items: flex-end;
+  }
+}
+.sunglasses-img { max-width: 90%; max-height: 90%; }
+@media (max-width: 767px) {
+  .sunglasses-img { max-width: 96%; max-height: 96%; }
 }
 .sunglasses-card {
   transition: transform 250ms ease;
@@ -193,6 +417,16 @@ body {
 }
 .sunglasses-card:hover .sunglasses-name {
   font-weight: 800;
+}
+.sunglasses-name {
+  margin-top: -28px;
+  margin-bottom: 5px;
+}
+@media (max-width: 1279px) {
+  .sunglasses-name { margin-top: -22px; }
+}
+@media (max-width: 767px) {
+  .sunglasses-name { margin-top: 6px; margin-bottom: 3px; }
 }
 
 /* ── Collection carousel ────────────────────────────────────── */
@@ -212,15 +446,46 @@ body {
   box-shadow: none;
   padding: 0;
 }
-@media (max-width: 1023px) {
+@media (max-width: 1279px) {
   .collection-card {
     flex: 0 0 calc(50% - 12px);
   }
 }
 @media (max-width: 767px) {
-  .collection-card {
-    flex: 0 0 calc(88% - 10px);
+  .collection-card { flex: 0 0 66%; }
+}
+
+/* Home — featured collection carousel wrapper/title spacing */
+.featured-collection-wrap {
+  padding-top: clamp(48px, 6vw, 84px);
+  padding-bottom: clamp(80px, 10vw, 140px);
+}
+@media (max-width: 1279px) {
+  .featured-collection-wrap {
+    padding-top: clamp(32px, 4vw, 56px);
+    padding-bottom: clamp(40px, 6vw, 72px);
   }
+}
+@media (max-width: 767px) {
+  .featured-collection-wrap { padding-top: 40px; padding-bottom: 56px; }
+}
+
+.featured-collection-title { font-size: 18px; margin-bottom: 96px; }
+@media (max-width: 1279px) {
+  .featured-collection-title { margin-bottom: 56px; }
+}
+@media (max-width: 767px) {
+  .featured-collection-title { font-size: 15px; letter-spacing: 0.08em; margin-bottom: 24px; }
+}
+
+.collection-card-image-wrap { width: 100%; }
+@media (max-width: 1279px) {
+  .collection-card-image-wrap { width: 78%; margin: 0 auto; }
+}
+
+.collection-card-image { margin-bottom: 6px; }
+@media (max-width: 767px) {
+  .collection-card-image { margin-bottom: 10px; }
 }
 
 @keyframes fadeUp {
@@ -270,6 +535,67 @@ body {
 .hover-line:hover::after { width: 100%; }
 
 .snow-explore-btn:hover { border-color: rgba(33,27,22,0.75); }
+@media (max-width: 1279px) {
+  .snow-explore-btn { width: 100%; max-width: 300px; }
+}
+
+/* ── Snow collection — shared text-width rule (page + home embed) ── */
+.snow-body-text { max-width: 480px; font-size: 14px; }
+@media (max-width: 1279px) {
+  .snow-body-text { max-width: 640px; }
+}
+@media (max-width: 767px) {
+  .snow-body-text { max-width: 100%; font-size: 13px; }
+}
+
+/* Snow — /collection/snow editorial section padding */
+.snow-editorial-section {
+  padding-top: clamp(72px, 9vw, 120px);
+  padding-bottom: clamp(80px, 10vw, 140px);
+  padding-left: clamp(24px, 8vw, 120px);
+  padding-right: clamp(24px, 8vw, 120px);
+}
+@media (max-width: 1279px) {
+  .snow-editorial-section {
+    padding-top: clamp(48px, 6vw, 72px);
+    padding-bottom: clamp(56px, 7vw, 88px);
+  }
+}
+@media (max-width: 767px) {
+  .snow-editorial-section {
+    padding-top: 40px;
+    padding-bottom: 48px;
+    padding-left: var(--section-px, 24px);
+    padding-right: var(--section-px, 24px);
+  }
+}
+
+/* Snow — home-embedded version spacing */
+.snow-embed-top-spacer { padding-top: clamp(48px, 6vw, 84px); }
+@media (max-width: 1279px) {
+  .snow-embed-top-spacer { padding-top: clamp(28px, 4vw, 48px); }
+}
+
+.snow-embed-section {
+  padding-top: clamp(56px, 7vw, 96px);
+  padding-bottom: clamp(80px, 10vw, 140px);
+  padding-left: clamp(24px, 8vw, 120px);
+  padding-right: clamp(24px, 8vw, 120px);
+}
+@media (max-width: 1279px) {
+  .snow-embed-section {
+    padding-top: clamp(40px, 5vw, 64px);
+    padding-bottom: clamp(56px, 7vw, 88px);
+  }
+}
+@media (max-width: 767px) {
+  .snow-embed-section {
+    padding-top: 32px;
+    padding-bottom: 48px;
+    padding-left: var(--section-px, 24px);
+    padding-right: var(--section-px, 24px);
+  }
+}
 
 .grain::before {
   content: '';
@@ -313,5 +639,68 @@ body {
   :root {
     --hero-content-bottom: 100px;
     --hero-dots-bottom: 60px;
+  }
+}
+
+/* ── Foundational type scale (opt-in; not applied to any existing
+   element in this pass — available for future pages/components).
+   Usage: className="text-h1" + style={{ "--fs-desktop": "64px" }} */
+.text-h1 { font-size: clamp(34px, 8vw, 40px); line-height: 1.3; }
+.text-h2 { font-size: clamp(28px, 6vw, 32px); line-height: 1.3; }
+.text-h3 { font-size: clamp(20px, 5vw, 24px); line-height: 1.3; }
+.text-body { font-size: clamp(15px, 3.5vw, 16px); line-height: 1.6; }
+@media (min-width: 768px) and (max-width: 1279px) {
+  .text-h1   { font-size: calc(var(--fs-desktop, 56px) * 0.9); line-height: 1.15; }
+  .text-h2   { font-size: calc(var(--fs-desktop, 32px) * 0.9); line-height: 1.2; }
+  .text-h3   { font-size: calc(var(--fs-desktop, 22px) * 0.9); line-height: 1.3; }
+  .text-body { font-size: calc(var(--fs-desktop, 16px) * 0.9); line-height: 1.5; }
+}
+@media (min-width: 1280px) {
+  .text-h1, .text-h2, .text-h3, .text-body {
+    font-size: var(--fs-desktop);
+    line-height: normal;
+  }
+}
+
+/* ── Home — newsletter row (stacks on mobile) ─────────────────── */
+.newsletter-input { border-right: none; }
+@media (max-width: 767px) {
+  .newsletter-row { gap: 10px; }
+  .newsletter-input { border-right: 1px solid rgba(138,138,138,0.22); }
+}
+
+/* ── Footer — mobile simplification ───────────────────────────
+   Lighter group headings/links, stacked newsletter, more
+   negative space top/bottom. Desktop/tablet values below match
+   the previous Tailwind defaults exactly (py-16 = 64px). */
+.footer-inner { padding-top: 64px; padding-bottom: 64px; }
+@media (max-width: 767px) {
+  .footer-inner { padding-top: 80px; padding-bottom: 56px; }
+}
+
+.footer-bottom-bar { margin-top: 64px; padding-top: 32px; }
+@media (max-width: 767px) {
+  .footer-bottom-bar { margin-top: 56px; padding-top: 28px; }
+}
+
+@media (max-width: 767px) {
+  .footer-group-heading {
+    letter-spacing: 0.14em;
+    opacity: 0.7;
+    margin-bottom: 18px;
+  }
+  .footer-link {
+    margin-bottom: 14px;
+    font-size: 12px;
+  }
+  .footer-newsletter-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-newsletter-row input {
+    padding: 12px 14px;
+  }
+  .footer-newsletter-row button {
+    align-self: flex-start;
   }
 }

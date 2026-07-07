@@ -77,15 +77,12 @@ export default function SnowPage() {
 
       {/* ── EDITORIAL SECTION ─────────────────────────────────────── */}
       <section
+        className="snow-editorial-section"
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          paddingTop: "clamp(72px, 9vw, 120px)",
-          paddingBottom: "clamp(80px, 10vw, 140px)",
-          paddingLeft: "clamp(24px, 8vw, 120px)",
-          paddingRight: "clamp(24px, 8vw, 120px)",
         }}
       >
         <p
@@ -104,14 +101,13 @@ export default function SnowPage() {
         </p>
 
         <p
+          className="snow-body-text"
           style={{
             fontFamily: '"TT Norms Pro", sans-serif',
-            fontSize: "14px",
             fontWeight: 400,
             lineHeight: 1.9,
             letterSpacing: "0.01em",
             color: "rgba(33,27,22,0.50)",
-            maxWidth: "480px",
             marginBottom: "clamp(36px, 4vw, 52px)",
           }}
         >

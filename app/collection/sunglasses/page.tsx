@@ -41,20 +41,16 @@ export default function SunglassesPage() {
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "420px",
-          overflow: "hidden",
-          background: "#F4F1EC",
-        }}
+        className="collection-hero-banner"
+        style={{ background: "#F4F1EC" }}
       >
         <Image
           src="/editorial/MODEL - CLASSY - 3.png"
           alt="CULT OPTIC Sunglasses Collection"
           fill
           priority
-          sizes="100vw"
+          quality={100}
+          sizes="(max-width: 767px) 250vw, 100vw"
           style={{ objectFit: "cover", objectPosition: "center center" }}
         />
 
@@ -73,8 +69,8 @@ export default function SunglassesPage() {
         style={{
           paddingTop: "clamp(24px, 3vw, 40px)",
           paddingBottom: "clamp(56px, 7vw, 96px)",
-          paddingLeft: "clamp(24px, 5vw, 80px)",
-          paddingRight: "clamp(24px, 5vw, 80px)",
+          paddingLeft: "var(--section-px, clamp(24px, 5vw, 80px))",
+          paddingRight: "var(--section-px, clamp(24px, 5vw, 80px))",
         }}
       >
         <div className="sunglasses-grid">
@@ -85,24 +81,13 @@ export default function SunglassesPage() {
               className="sunglasses-card"
               style={{ textDecoration: "none", display: "block" }}
             >
-              <div
-                style={{
-                  width: "100%",
-                  height: "clamp(220px, 24vw, 320px)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "#F4F1EC",
-                }}
-              >
+              <div className="sunglasses-card-image-box">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={cardImages[product.id]}
                   alt={product.name}
                   className="sunglasses-img"
                   style={{
-                    maxWidth: "90%",
-                    maxHeight: "90%",
                     width: "auto",
                     height: "auto",
                     objectFit: "contain",
@@ -122,8 +107,6 @@ export default function SunglassesPage() {
                   letterSpacing: "0.10em",
                   textTransform: "uppercase",
                   color: "#211B16",
-                  marginTop: "-28px",
-                  marginBottom: "5px",
                   lineHeight: 1.2,
                 }}
               >

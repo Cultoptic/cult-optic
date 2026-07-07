@@ -68,23 +68,17 @@ export default function FeaturedCollection() {
 
   return (
     <section style={{ background: "#F4F1EC" }}>
-      <div
-        style={{
-          paddingTop: "clamp(48px, 6vw, 84px)",
-          paddingBottom: "clamp(80px, 10vw, 140px)",
-        }}
-      >
+      <div className="featured-collection-wrap">
         {/* Title */}
         <p
+          className="featured-collection-title"
           style={{
             fontFamily: '"TT Norms Pro", sans-serif',
-            fontSize: "18px",
             fontWeight: 700,
             letterSpacing: "0.05em",
             textTransform: "uppercase",
             lineHeight: 1,
             color: "rgba(33,27,22,0.75)",
-            marginBottom: "96px",
             paddingLeft: "clamp(24px, 5vw, 80px)",
           }}
         >
@@ -115,21 +109,23 @@ export default function FeaturedCollection() {
             >
               {/* Image */}
               {cardImages[product.id] && (
-                <Image
-                  src={cardImages[product.id]}
-                  alt={product.name}
-                  width={0}
-                  height={0}
-                  placeholder="empty"
-                  unoptimized
-                  sizes="(max-width: 767px) 88vw, (max-width: 1023px) 50vw, 25vw"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    marginBottom: "6px",
-                  }}
-                />
+                <div className="collection-card-image-wrap">
+                  <Image
+                    src={cardImages[product.id]}
+                    alt={product.name}
+                    width={0}
+                    height={0}
+                    placeholder="empty"
+                    unoptimized
+                    sizes="(max-width: 767px) 66vw, (max-width: 1279px) 39vw, 25vw"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      display: "block",
+                    }}
+                    className="collection-card-image"
+                  />
+                </div>
               )}
 
               {/* Name only */}

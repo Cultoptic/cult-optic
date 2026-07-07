@@ -8,7 +8,7 @@ export default function SnowCollection() {
     <section style={{ background: "#F4F1EC" }}>
 
       {/* Breathing room above — mirrors FeaturedCollection top padding */}
-      <div style={{ paddingTop: "clamp(48px, 6vw, 84px)" }} />
+      <div className="snow-embed-top-spacer" />
 
       {/* Photograph — protagonist, occupies full available width */}
       <Image
@@ -22,15 +22,12 @@ export default function SnowCollection() {
 
       {/* Editorial block — centered, generous negative space */}
       <div
+        className="snow-embed-section"
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          paddingTop: "clamp(56px, 7vw, 96px)",
-          paddingBottom: "clamp(80px, 10vw, 140px)",
-          paddingLeft: "clamp(24px, 8vw, 120px)",
-          paddingRight: "clamp(24px, 8vw, 120px)",
         }}
       >
         {/* Title — same hierarchy as "Sunglasses Collection" */}
@@ -51,14 +48,13 @@ export default function SnowCollection() {
 
         {/* Body */}
         <p
+          className="snow-body-text"
           style={{
             fontFamily: '"TT Norms Pro", sans-serif',
-            fontSize: "14px",
             fontWeight: 400,
             lineHeight: 1.9,
             letterSpacing: "0.01em",
             color: "rgba(33,27,22,0.50)",
-            maxWidth: "480px",
             marginBottom: "clamp(36px, 4vw, 52px)",
           }}
         >
@@ -68,6 +64,7 @@ export default function SnowCollection() {
         {/* Button — identical style to the rest of the site */}
         <Link
           href="/catalog?category=snow"
+          className="snow-explore-btn"
           style={{
             fontFamily: '"TT Norms Pro", sans-serif',
             fontSize: "11px",
@@ -83,12 +80,6 @@ export default function SnowCollection() {
             alignItems: "center",
             justifyContent: "center",
             transition: "border-color 0.3s ease",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(33,27,22,0.75)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(33,27,22,0.35)";
           }}
         >
           EXPLORAR COLECCIÓN

@@ -11,12 +11,12 @@ const topOverlay = (
     }}
   >
     <div
+      className="hero-slider-overlay"
       style={{
         position: "absolute",
         top: 0,
         left: 0,
         right: 0,
-        height: "220px",
         background:
           "linear-gradient(to bottom, rgba(10,8,6,0.72) 0%, rgba(33,27,22,0.30) 55%, transparent 100%)",
       }}
@@ -26,7 +26,7 @@ const topOverlay = (
 
 export default function HeroSlider() {
   return (
-    <section style={{ position: "relative", overflow: "hidden", height: "100vh" }}>
+    <section className="hero-slider" style={{ position: "relative", overflow: "hidden" }}>
       <video
         autoPlay
         muted
