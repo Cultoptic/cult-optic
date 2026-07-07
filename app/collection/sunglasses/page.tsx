@@ -77,7 +77,7 @@ export default function SunglassesPage() {
           {visibleProducts.map((product) => (
             <Link
               key={product.id}
-              href={`/catalog/${product.id}`}
+              href={`/product/${product.id}`}
               className="sunglasses-card"
               style={{ textDecoration: "none", display: "block" }}
             >

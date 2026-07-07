@@ -100,7 +100,7 @@ export default function FeaturedCollection() {
           {loopItems.map((product, i) => (
             <Link
               key={`${product.id}-${i}`}
-              href={`/catalog/${product.id}`}
+              href={`/product/${product.id}`}
               className="collection-card"
               style={{
                 flexShrink: 0,
