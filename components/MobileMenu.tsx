@@ -23,7 +23,7 @@ const ACCENT_HOVER = "#EF761F";
 
 const MAIN_LINK_STYLE: React.CSSProperties = {
   fontFamily: "var(--font-primary)",
-  fontSize: "34px",
+  fontSize: "clamp(36px, 9vw, 42px)",
   fontWeight: 400,
   letterSpacing: "0.01em",
   color: TEXT_COLOR,
@@ -69,10 +69,11 @@ export default function MobileMenu({
 
   return (
     <div
-      className="md:hidden fixed inset-0 z-40 flex flex-col"
+      className="md:hidden fixed inset-0 z-[100] flex flex-col"
       style={{
+        top: 0,
         width: "100vw",
-        height: "100vh",
+        minHeight: "100dvh",
         background: "#211B16",
         opacity: menuOpen ? 1 : 0,
         visibility: menuOpen ? "visible" : "hidden",
@@ -87,7 +88,7 @@ export default function MobileMenu({
         <button
           onClick={() => setMenuOpen(false)}
           aria-label="Cerrar menú"
-          style={{ fontFamily: "var(--font-primary)", fontSize: "22px", fontWeight: 300, color: TEXT_COLOR, background: "none", border: "none", cursor: "pointer", lineHeight: 1, padding: "4px 8px" }}
+          style={{ fontFamily: "var(--font-primary)", fontSize: "28px", fontWeight: 300, color: TEXT_COLOR, background: "none", border: "none", cursor: "pointer", lineHeight: 1, padding: "4px" }}
         >
           ✕
         </button>
@@ -106,8 +107,8 @@ export default function MobileMenu({
         >
           {/* ── PANEL 1 — main ─────────────────────────────────── */}
           <div
-            className="flex flex-col justify-center"
-            style={{ width: "50%", flexShrink: 0, padding: "0 32px 64px" }}
+            className="flex flex-col"
+            style={{ width: "50%", flexShrink: 0, padding: "72px 32px 64px", justifyContent: "flex-start" }}
             inert={menuView !== "main" ? true : undefined}
           >
             <button
@@ -119,8 +120,9 @@ export default function MobileMenu({
                 cursor: "pointer",
                 padding: 0,
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
                 alignItems: "center",
+                gap: "12px",
                 width: "100%",
                 textAlign: "left",
               }}
@@ -128,7 +130,7 @@ export default function MobileMenu({
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = TEXT_COLOR; }}
             >
               COLLECTION
-              <span style={{ opacity: 0.5, fontWeight: 300 }}>&gt;</span>
+              <span style={{ opacity: 0.5, fontWeight: 300, lineHeight: 1 }}>&gt;</span>
             </button>
 
             {otherLinks.map((link) => (
@@ -138,9 +140,9 @@ export default function MobileMenu({
                 onClick={() => setMenuOpen(false)}
                 style={{
                   ...MAIN_LINK_STYLE,
-                  paddingTop: "36px",
-                  borderTop: "1px solid rgba(245,241,236,0.08)",
-                  marginTop: "36px",
+                  paddingTop: "20px",
+                  borderTop: "1px solid rgba(245,241,236,0.05)",
+                  marginTop: "32px",
                 }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = ACCENT_HOVER; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = TEXT_COLOR; }}
@@ -152,8 +154,8 @@ export default function MobileMenu({
 
           {/* ── PANEL 2 — collection drill-down ─────────────────── */}
           <div
-            className="flex flex-col justify-center"
-            style={{ width: "50%", flexShrink: 0, padding: "0 32px 64px" }}
+            className="flex flex-col"
+            style={{ width: "50%", flexShrink: 0, padding: "72px 32px 64px", justifyContent: "flex-start" }}
             inert={menuView !== "collection" ? true : undefined}
           >
             <button
@@ -166,17 +168,18 @@ export default function MobileMenu({
                 cursor: "pointer",
                 padding: 0,
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
                 alignItems: "center",
+                gap: "12px",
                 width: "100%",
                 textAlign: "left",
-                marginBottom: "36px",
+                marginBottom: "32px",
               }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = ACCENT_HOVER; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = TEXT_COLOR; }}
             >
               COLLECTION
-              <span style={{ opacity: 0.5, fontWeight: 300 }}>×</span>
+              <span style={{ opacity: 0.5, fontWeight: 300, lineHeight: 1 }}>×</span>
             </button>
 
             {collectionSub.map((item, i) => (
@@ -186,7 +189,7 @@ export default function MobileMenu({
                 onClick={() => setMenuOpen(false)}
                 style={{
                   ...SUB_LINK_STYLE,
-                  ...(i > 0 ? { paddingTop: "28px", borderTop: "1px solid rgba(245,241,236,0.08)", marginTop: "28px" } : {}),
+                  ...(i > 0 ? { paddingTop: "16px", borderTop: "1px solid rgba(245,241,236,0.05)", marginTop: "24px" } : {}),
                 }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = ACCENT_HOVER; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = TEXT_COLOR; }}

@@ -18,6 +18,11 @@ export default function MobileHeader({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // El overlay de MobileMenu tiene su propio header interno (logo + cerrar).
+  // Este header original no debe existir en el DOM mientras el menú está
+  // abierto, para que nunca se vea "header sobre header".
+  if (menuOpen) return null;
+
   return (
     <div
       className="flex md:hidden fixed top-0 left-0 right-0 z-50"
